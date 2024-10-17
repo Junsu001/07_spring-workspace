@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.br.mvc.dto.MemberDto;
+
 @RequestMapping("/member")
 @Controller
 public class MemberController {
@@ -42,7 +44,7 @@ public class MemberController {
 		String name = request.getParameter("name");
 		int age = Integer.parseInt(request.getParameter("age"));
 		String address = request.getParameter("address");
-		
+		 
 		System.out.println("이름: " + name);
 		System.out.println("나이: " + age);
 		System.out.println("주소: " + address);
@@ -81,7 +83,46 @@ public class MemberController {
 		System.out.println("나이: " + age);
 		System.out.println("주소: " + addr);
 		
+		MemberDto mem = new MemberDto();
+		mem.setName(name);
+//		mem.setAge(age);
+		mem.setAddr(addr);
+		
+		System.out.println(mem);
+		
 		return "main";
 	}
+	
+	/*
+	 * 3. 커맨드 객체 방법
+	 * 	  요청 파라미터들을 각 필드에 담고자 하는 객체를 커맨드 객체라고 함
+	 * 	  즉, 전달값들을 특정 dto객체에 바로 담고자 할 경우 사용하면 됨
+	 * 
+	 *    1) 메소드의 매개변수로 전달값들을 담고자하는 객체를 작성
+	 *    2) 요청파라미터의 키값을 담고자하는 객체의 필드명으로 작성하면 됨 
+	 *    
+	 *    > 내부적으로 실행되는 내용
+	 *    	/member/enroll3.do?name=홍길동&age=20&addr=서울  url 요청시
+	 *      매개변수로 있는 Dto객체를 기본생성자로 생성함
+	 *      => 파라미터의 키값가지고 setter메소드를 찾아 실행시켜줌
+	 *      
+	 *      MemberDto mem = new MemberDto();
+	 *      mem.setName("홍길동");
+	 *      mem.setAge(Integer.parseInt("20"));
+	 *      mem.setAddr("서울");
+	 *      
+	 *      
+	 */
+	
+	@PostMapping("/enroll3.do")
+	public String memnberEnroll3(MemberDto mem) {
+		
+		System.out.println(mem);
+		
+		return "main";
+	}
+	
+	
+	
 	
 }

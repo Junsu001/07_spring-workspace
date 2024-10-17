@@ -59,8 +59,22 @@
       <button type="submit">등록</button>
    </form>
 		
+		<br><br>
 		
-		
+		<!--  커맨드 객체 방법 -->
+		<form action="${ contextPath }/member/enroll3.do" method="post">
+      이름 : <input type="text" name="name"> <br>
+      나이 : <input type="text" name="age"> <br>
+      주소 : <input type="text" name="addr"> <br>
+      <button type="submit">등록</button>
+   </form>
+   
+     <hr>
+   
+   <h3>4. 응답페이지로 포워딩시 필요한 데이터 담는 방법</h3>
+   <a href="${ contextPath }/notice/list.do">공지사항 목록페이지로 이동</a>
+   
+	 
 		
 		
 		
