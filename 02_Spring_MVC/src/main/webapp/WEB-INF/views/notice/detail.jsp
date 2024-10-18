@@ -9,22 +9,27 @@
 <title>Insert title here</title>
 </head>
 <body>
+   <c:if test="${ not empty alertMsg }">
+      <script>
+      alert('${ alertMsg }');
+      
+      </script>
+   </c:if>
 
-	<h3>공지사항 상세 페이지</h3>
-
-	<c:choose>
-		<c:when test="${ empty notice }">
-			조회된 공지사항이 없습니다.
-		</c:when>
-		<c:otherwise>
-			번호: ${ notice.no } <br>
-			제목: ${ notice.title } <br>
-			내용: ${ notice.content } <br><br>
-			
-		</c:otherwise>
-	</c:choose>
-	
-	<a href="${ contextPath }/notice/modifyForm.do?no=${ notice.no }" type=button>수정페이지</a>
-	
+   <h3>공지사항 상세 페이지</h3>
+   <c:choose>
+      <c:when test="${ empty notice }">
+         조회 된 공지 사항이 없습니다.
+      </c:when>
+      <c:otherwise>
+         번호 : ${ notice.no }<br>
+         제목 : ${ notice.title }<br>
+         내용 : ${ notice.content }<br><br>
+         
+         <!-- 수정페이지 -->
+         <input type="hidden" name="no" value="${ notice.no }">
+         <a href="${ contextPath }/notice/modifyForm.do?no=${ notice.no }">공지사항 목록페이지로 이동</a>
+      </c:otherwise>
+   </c:choose>
 </body>
 </html>
