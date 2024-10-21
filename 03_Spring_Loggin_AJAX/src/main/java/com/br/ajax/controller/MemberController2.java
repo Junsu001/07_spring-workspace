@@ -6,49 +6,26 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.br.ajax.dto.MemberDto;
 import com.br.ajax.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
-@RequestMapping("/member1")
 @RequiredArgsConstructor
-@Controller
-public class MemberController1 {
+@RequestMapping("/member2")
+@RestController // 안의 메소드들에 전부 @ResponseBody가 붙어진채로 동작한다 //RestAPI의 경우 이런느낌이 많음
+public class MemberController2 {
 
 	private final MemberService memService;
 	private Logger logger = LoggerFactory.getLogger(MemberController1.class);
-	
-	// 기존에 HttpServlet 요청하는 방법
-	/*
-	@GetMapping("/detail1.do")
-	public void memberDetail(String id, String pwd, HttpServletResponse response) throws IOException {
-		logger.debug("request id: {}, pwd: {}", id, pwd);
-		String result = memService.selectMemberByIdPwd(id, pwd);
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.print(result);
-	}
-	*/
-	
-	/*
-	 * * @ResponseBody
-	 * - 비동기식으로 데이터 응답시 필요한 어노테이션
-	 * - 해당 어노테이션이 붙은 메소드에서의 반환 값은
-	 *   응답뷰가 아닌 어떤 data(text, json, xml 등)라는 걸 의미
-	 * 
-	 * 
-	 */
-	
 	
 	@ResponseBody
 	@GetMapping(value="/detail1.do", produces="text/html; charset=utf-8")
@@ -116,6 +93,4 @@ public class MemberController1 {
 		logger.debug("map>name: {}", map.get("name"));
 		logger.debug("map>arr: {}", map.get("arr"));
 	}  
-	
-	
 }
