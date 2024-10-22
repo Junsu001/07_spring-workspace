@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.br.sbatis.dto.NoticeDto;
@@ -28,8 +29,65 @@ public class NoticeController {
 		model.addAttribute("list", list);
 		
 //		return "notice/list";
+	
+	}
+	
+	
+	@GetMapping("/detail.do") // /notice/detail.do
+	public void noticeDetail(int no, Model model) {
 		
+		NoticeDto n = noticeService.selectNoticeByNo(no);
+		model.addAttribute("n",n);
 		
 	}
+	
+	@GetMapping("/enroll.do") // /notice/enroll.do
+	public void noticeEnroll() {
+			
+	}
+	
+	@PostMapping("/insert.do")
+	public String noticeInsert(NoticeDto n) {
+		int result = noticeService.insertNotice(n);
+		if(result > 0) { // 성공 => 리스트페이지
+			return "redirect:/notice/list.do";
+		} else {  // 실패 => 메인페이지
+			return "redirect:/";
+		}
+	
+	}
+	
+	@GetMapping("/modify.do") // /notice/modify.do
+	public void noticeModify(int no, Model model) { //꼭 필드에 지정한 키값으로 넘겨야함
+		model.addAttribute("n",noticeService.selectNoticeByNo(no));
+
+	}
+	
+	@PostMapping("/update.do") 
+	public String noticeUpdate(NoticeDto n) {
+		int result = noticeService.updateNotice(n);
+		if(result > 0) {
+			return "redirect:/notice/detail.do?no=" + n.getNo();
+		} else {
+			return "redirect:/notice/list.do";
+		}
+	}
+
+	@PostMapping("/delete.do")
+	public String noticeDelete(String[] deleteNo) {
+		//delete from notice where no in (xx, xx, xx) 쿼리가 실행될 수 있도록
+		// service 메소드 수정, dao 메소드 만들기, mapper 에 쿼리 작성
+		
+		// 성공했을 경우 => 목록페이지
+		// 실패했을 경우 => 메인페이지
+		int result = noticeService.deleteNotice(deleteNo);
+		
+		if(result == deleteNo.length) {
+			return "redirect:/notice/list.do";
+		} else {
+			return "redirect:/";
+		}
+	}
+	
 	
 }
