@@ -16,7 +16,7 @@ import lombok.ToString;
 public class AttachDto {
 	
 	private int fileNo;
-	private String filPath;
+	private String filePath;
 	private String originalName;
 	private String filesystemName;
 	private int refBoardNo;

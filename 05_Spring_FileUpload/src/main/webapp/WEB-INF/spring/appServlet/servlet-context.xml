@@ -14,7 +14,9 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+	<resources mapping="/upload/**" location="file:///upload/" /><!-- 외부 경로를 잡고싶으면 file:// 후에 경로를 잡으면 됨 -->
+	<!-- location을 /로 잡으면 기본적으로 webapp을 잡는다. -->
+	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
