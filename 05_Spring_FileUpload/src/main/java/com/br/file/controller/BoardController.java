@@ -143,4 +143,37 @@ public class BoardController {
 
 	}
 	
+	@PostMapping("/editor/insert.do")
+	public String editorInsertBoard(BoardDto board) {
+		log.debug("board:{}",board);
+		int result = boardService.insertOneFileBoard(board, null);
+		
+		if(result > 0) {
+			log.debug("에디터 게시글 등록 성공");
+		} else {
+			log.debug("에디터 게시글 등록 실패");
+		}
+		
+		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@PostMapping("/editor/imageUpload.do")
+	public String editorImageUpload(MultipartFile image) {
+		
+		Map<String, String> map = fileUtil.fileupload(image);
+		return map.get("filePath") + "/" + map.get("filesystemName");
+		// /upload/202411025/~~~~~~~.jpg
+		
+	}
+	
+	
+	@ResponseBody // 응답 데이터 받을때는 무조건 ResponseBody (ajax요청시 필수)
+	@GetMapping(value="/editor/detail.do", produces="application/json")
+	public BoardDto editorSelectBoard(int boardNo) {
+		
+		BoardDto b = boardService.selectBoard(boardNo);
+		return b;
+	}
+	
 }

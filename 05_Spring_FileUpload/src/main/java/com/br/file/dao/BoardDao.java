@@ -28,4 +28,8 @@ public class BoardDao {
 	public List<AttachDto> selectAttachList(){
 		return sqlSession.selectList("boardMapper.selectAttachList");
 	}
+	
+	public BoardDto selectBoard(int boardNo) {
+		return sqlSession.selectOne("boardMapper.selectBoard",boardNo);
+	}
 }
