@@ -22,6 +22,8 @@
          <artifactId>spring-context</artifactId>
          <version>${org.springframework-version}</version>
          <exclusions>
+         
+         
             <!-- Exclude Commons Logging in favor of SLF4j -->
             <exclusion>
                <groupId>commons-logging</groupId>
@@ -34,6 +36,24 @@
          <artifactId>spring-webmvc</artifactId>
          <version>${org.springframework-version}</version>
       </dependency>
+         <!-- Spring Security -->
+				
+				<dependency>
+				    <groupId>org.springframework.security</groupId>
+				    <artifactId>spring-security-core</artifactId>
+				    <version>5.7.5</version>
+				</dependency>
+
+					<dependency>
+					    <groupId>org.springframework.security</groupId>
+					    <artifactId>spring-security-core</artifactId>
+					    <version>5.7.5</version>
+					</dependency>
+					<dependency>
+					    <groupId>org.springframework.security</groupId>
+					    <artifactId>spring-security-core</artifactId>
+					    <version>5.7.5</version>
+					</dependency>
             
       <!-- * AspectJ (AOP를 위한 라이브러리)-->
       <dependency>

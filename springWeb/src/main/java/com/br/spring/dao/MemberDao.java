@@ -18,7 +18,7 @@ public class MemberDao {
 	}
 	
 	public int insertMember(MemberDto m) {
-		return sqlSession.insert("memberMapper.inserMember",m);
+		return sqlSession.insert("memberMapper.insertMember",m);
 	}
 	
 	public int selectUserIdCount(String checkId) {
