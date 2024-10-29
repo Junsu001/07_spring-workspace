@@ -27,7 +27,7 @@ header .profile-img{width:30px;}
 
 <header class="row m-3">
 <div class="col-3 d-flex justify-content-center align-items-center">
-    <a href=""><img src="${ contextPath }/resources/images/goodee_logo.png" width="100px"></a>
+    <a href="${ contextPath }"><img src="${ contextPath }/resources/images/goodee_logo.png" width="100px"></a>
 </div>
 <div class="col-5"></div>
 <div class="col-4 d-flex justify-content-center align-items-center">
@@ -36,13 +36,13 @@ header .profile-img{width:30px;}
 		<c:when test="${ empty loginUser }">	
 		<!-- case1. 로그인전  -->
     <a href="${ contextPath }/member/signup.do">회원가입</a> &nbsp;|&nbsp;
-    <a href="#" data-toggle="modal" data-target="#loginModal">로그인</a> 
+    <a href="" data-toggle="modal" data-target="#loginModal">로그인</a> 
  		</c:when>
  	<c:otherwise >
     <!-- case2. 로그인후 -->
     <div>
-	    <img class="profile-img" src="${ contextPath }<c:out value='${ loginUser.profileURL }' default='/resources/images/defaultProfile.png'/>">&nbsp;
-	    <a href="">${ loginUser.userName }님</a> &nbsp;|&nbsp;
+	    <img class="profile-img" src="${ contextPath }<c:out value='${ loginUser.profileURL }' default='/resources/images/맹구.jpeg'/>">&nbsp;
+	    <a href="${ contextPath }/member/myinfo.do">${ loginUser.userName }님</a> &nbsp;|&nbsp;
 	    <a href="${ contextPath }/member/signout.do">로그아웃</a>
 	  </div>
   </c:otherwise>
@@ -52,13 +52,13 @@ header .profile-img{width:30px;}
 <nav class="navbar m-3 navbar-expand-sm bg-dark navbar-dark d-flex justify-content-center">
 <ul class="navbar-nav">
     <li class="nav-item">
-    <a class="nav-link" href="#">Home</a>
+    <a class="nav-link" href="${ contextPath }">Home</a>
     </li>
     <li class="nav-item">
     <a class="nav-link" href="#">공지사항</a>
     </li>
     <li class="nav-item">
-    <a class="nav-link" href="#">일반게시판</a>
+    <a class="nav-link" href="${ contextPath }/board/list.do">일반게시판</a>
     </li>
     <li class="nav-item">
     <a class="nav-link" href="#">사진게시판</a>

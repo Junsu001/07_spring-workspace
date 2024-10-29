@@ -16,6 +16,9 @@ public interface MemberService {
 	// 회원정보 변경
 	int updateMember(MemberDto m);
 	
+	// 회원프로필 변경
+	int updateProfileImg(MemberDto m);
+	
 	// 회원탈퇴
 	int deleteMember(String userId);
 }

@@ -33,7 +33,13 @@ public int updateMember(MemberDto m) {
 }
 
 @Override
+public int updateProfileImg(MemberDto m) {
+	return memberDao.updateProfileImg(m);
+}
+
+@Override
 public int deleteMember(String userId) {
 	return memberDao.deleteMember(userId);
 }
+
 }

@@ -25,5 +25,6 @@ public class BoardDto {
 	private String registDt;
 	private String status;
 
+	private int attachCount;
 
 }
