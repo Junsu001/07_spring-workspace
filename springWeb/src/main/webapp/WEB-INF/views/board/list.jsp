@@ -59,7 +59,7 @@
                 		</c:when>
                 		<c:otherwise>
                 			<c:forEach var="b" items="${ list }">
-			                    <tr onclick='location.href="${contextPath}/board/detail.do?no=${ b.boardNo }";'>
+			                    <tr onclick='location.href="${contextPath}/board/${ loginUser.userId eq b.boardWriter ? "detail.do" : "increase.do" }?no=${ b.boardNo }";'>
 			                        <td>${ b.boardNo }</td>
 			                        <td>${ b.boardTitle }</td>
 			                        <td>${ b.boardWriter }</td>
@@ -95,8 +95,7 @@
            
             <br clear="both"><br>
             
-            <form action="${ contextPath }/board/search.do" method="
-" id="search_form" class="d-flex justify-content-center">
+            <form action="${ contextPath }/board/search.do" method="" id="search_form" class="d-flex justify-content-center">
                 <input type="hidden" name="page" value="1">
                 <div class="select">
                     <select class="custom-select" name="condition">
