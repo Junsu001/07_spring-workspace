@@ -36,5 +36,9 @@ public class MemberDao {
 	public int deleteMember(String userId) {
 		return sqlSession.update("memberMapper.deleteMember" , userId);
 	}
+	
+	public int updatePwd(MemberDto m) {
+		return sqlSession.update("memberMapper.updatePwd" , m);
+	}
 
 }

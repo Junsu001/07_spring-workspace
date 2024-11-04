@@ -219,5 +219,32 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	@PostMapping("/updatePwd.do")
+	public String updatePwd(String userPwd
+						 , String updatePwd
+						 ,  HttpSession session
+						 , RedirectAttributes rdAttributes) {
+		
+		MemberDto loginUser =(MemberDto)session.getAttribute("loginUser");
+		
+		if(bcryptPwdEncoder.matches(userPwd, loginUser.getUserPwd())) { // 비밀번호를 맞게 입력했을 경우
+			
+			
+			loginUser.setUserPwd(bcryptPwdEncoder.encode(updatePwd));
+			
+			int result = memberService.updatePwd(loginUser);
+			session.setAttribute("loginUser", loginUser);
+			
+			rdAttributes.addFlashAttribute("alertMsg", "성공적으로 비밀번호를 변경하셨습니다.");
+		} else { // 비밀번호가 틀렸을 경우
+			rdAttributes.addFlashAttribute("alertMsg", "비밀번호가 틀렸습니다. 다시 입력해주세요.");
+
+		}
+		
+		return "redirect:/member/myinfo.do";
+		
+		
+	}
+	
 
 }

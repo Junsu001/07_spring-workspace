@@ -42,4 +42,9 @@ public int deleteMember(String userId) {
 	return memberDao.deleteMember(userId);
 }
 
+@Override
+public int updatePwd(MemberDto m) {
+	return memberDao.updatePwd(m);
+}
+
 }

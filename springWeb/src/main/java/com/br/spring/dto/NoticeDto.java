@@ -1,6 +1,7 @@
 package com.br.spring.dto;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,8 @@ public class NoticeDto {
 	private String noticeWriter;
 	private String noticeContent;
 	private String registDt;
+	
+	private List<AttachDto> attachList; // has many 관계
 
 	
 }
