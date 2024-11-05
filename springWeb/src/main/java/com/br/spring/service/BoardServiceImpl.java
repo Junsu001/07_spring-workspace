@@ -117,5 +117,10 @@ public class BoardServiceImpl implements BoardService {
 					 	&& result3 == list.size()
 					 		? 1 : -1;
 	}
+
+	@Override
+	public int deleteReplyCompletely() {
+		return boardDao.deleteReplyCompletely();
+	}
    
 }

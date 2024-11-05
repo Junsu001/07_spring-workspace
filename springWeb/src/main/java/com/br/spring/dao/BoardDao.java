@@ -82,4 +82,8 @@ public class BoardDao {
 	public int deleteAttach(String[] delFileNo) {
 		return sqlSession.delete("boardMapper.deleteAttach" , delFileNo);
 	}
+	
+	public int deleteReplyCompletely() {
+		return sqlSession.delete("boardMapper.deleteReplyCompletely");
+	}
 } 
